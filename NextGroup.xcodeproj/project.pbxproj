@@ -13,6 +13,7 @@
 		254690092A089E3300E5AF8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 254690072A089E3300E5AF8C /* Main.storyboard */; };
 		2546900B2A089E3600E5AF8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2546900A2A089E3600E5AF8C /* Assets.xcassets */; };
 		2546900E2A089E3600E5AF8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2546900C2A089E3600E5AF8C /* LaunchScreen.storyboard */; };
+		254690202A08A1DD00E5AF8C /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2546901F2A08A1DD00E5AF8C /* RoomsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2546900A2A089E3600E5AF8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2546900D2A089E3600E5AF8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2546900F2A089E3600E5AF8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2546901F2A08A1DD00E5AF8C /* RoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,40 @@
 		254690002A089E3300E5AF8C /* NextGroup */ = {
 			isa = PBXGroup;
 			children = (
+				2546901E2A08A13400E5AF8C /* Model */,
+				2546901A2A08A04A00E5AF8C /* View */,
+				2546901B2A08A07200E5AF8C /* Controller */,
 				254690012A089E3300E5AF8C /* AppDelegate.swift */,
 				254690032A089E3300E5AF8C /* SceneDelegate.swift */,
-				254690052A089E3300E5AF8C /* ViewController.swift */,
-				254690072A089E3300E5AF8C /* Main.storyboard */,
 				2546900A2A089E3600E5AF8C /* Assets.xcassets */,
 				2546900C2A089E3600E5AF8C /* LaunchScreen.storyboard */,
 				2546900F2A089E3600E5AF8C /* Info.plist */,
 			);
 			path = NextGroup;
+			sourceTree = "<group>";
+		};
+		2546901A2A08A04A00E5AF8C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				254690072A089E3300E5AF8C /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2546901B2A08A07200E5AF8C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				254690052A089E3300E5AF8C /* ViewController.swift */,
+				2546901F2A08A1DD00E5AF8C /* RoomsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2546901E2A08A13400E5AF8C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +168,7 @@
 				254690062A089E3300E5AF8C /* ViewController.swift in Sources */,
 				254690022A089E3300E5AF8C /* AppDelegate.swift in Sources */,
 				254690042A089E3300E5AF8C /* SceneDelegate.swift in Sources */,
+				254690202A08A1DD00E5AF8C /* RoomsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
