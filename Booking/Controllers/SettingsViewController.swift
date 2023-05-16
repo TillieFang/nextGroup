@@ -72,4 +72,12 @@ class SettingsViewController: UIViewController {
         datePickerTextField.resignFirstResponder()
     }
 
+    // create override func to passing the value
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToRoom" {
+            let roomsViewController = segue.destination as! RoomsViewController;
+            roomsViewController.building = buildingPopUpButton.currentTitle
+            roomsViewController.date = datePickerTextField.text
+        }
+    }
 }

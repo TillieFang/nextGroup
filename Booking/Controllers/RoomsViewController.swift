@@ -23,6 +23,9 @@ class RoomsViewController: UIViewController {
     
     var timeDuration = 0
     var selectedIndex : IndexPath?
+    // Variable from the previous window
+    var building: String? = "Building 02"
+    var date: String? = "01/01/1000"
     
     override func viewDidLoad() {
         super.viewDidLoad()
