@@ -34,6 +34,9 @@ class RoomsViewController: UIViewController {
             roomInfo(roomNumber: "room2", capacity: 2),
             roomInfo(roomNumber: "room3", capacity: 3)]
         
+        
+        startingTimeDatePicker.minimumDate = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: Date())
+        startingTimeDatePicker.maximumDate = Calendar.current.date(bySettingHour: 21, minute: 0, second: 0, of: Date())
     
     }
     

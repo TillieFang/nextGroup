@@ -314,6 +314,9 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                                     <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="returnToHomePage:" destination="Scl-g1-QwB" eventType="touchUpInside" id="Y5R-DW-jpd"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V8X-od-Qy2">
                                                 <rect key="frame" x="0.0" y="55" width="283" height="50"/>
@@ -328,6 +331,9 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                                     <color key="baseForegroundColor" name="AccentColor"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="returnToSelectRoom:" destination="Scl-g1-QwB" eventType="touchUpInside" id="NEo-95-Sk7"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
