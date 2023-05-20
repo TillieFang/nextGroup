@@ -31,13 +31,15 @@ class RoomsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        let buildingRooms = BuildingHandler().getBuildingRooms(building: building!);
         
-        roomsTableData = [
-            roomInfo(roomNumber: "room1", capacity: 1),
-            roomInfo(roomNumber: "room2", capacity: 2),
-            roomInfo(roomNumber: "room3", capacity: 3)]
+        roomsTableData = [];
         
-        
+        for room in buildingRooms {
+            let newRoom : roomInfo = roomInfo(roomNumber: room.roomNumber, capacity: room.capacity);
+            roomsTableData.append(newRoom);
+        }
+                
         startingTimeDatePicker.minimumDate = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: Date())
         startingTimeDatePicker.maximumDate = Calendar.current.date(bySettingHour: 21, minute: 0, second: 0, of: Date())
     
@@ -85,7 +87,7 @@ extension RoomsViewController : UITableViewDelegate,UITableViewDataSource {
         let roomCell = tableView.dequeueReusableCell(withIdentifier: "roomCell", for: indexPath)
         let room = roomsTableData[indexPath.row]
         roomCell.textLabel?.text = room.roomNumber
-        roomCell.detailTextLabel?.text = "capacity: \(room.capacity)"
+        roomCell.detailTextLabel?.text = "Capacity: \(room.capacity)"
         return roomCell
     }
     
