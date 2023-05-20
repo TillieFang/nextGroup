@@ -350,6 +350,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qPE-SX-bmK"/>
+                    <connections>
+                        <outlet property="bookDateTimeLabel" destination="RaU-xQ-VyT" id="ncc-Oo-kbd"/>
+                        <outlet property="bookedRoomLabel" destination="EQu-Hb-hfM" id="tYm-E4-2WB"/>
+                        <outlet property="buildingLabel" destination="1hl-lq-L48" id="eoi-rC-FNU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7m-xc-Lce" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -514,7 +519,7 @@
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="Scl-g1-QwB" kind="show" id="U4o-Uh-l4n"/>
+                                    <segue destination="Scl-g1-QwB" kind="show" identifier="goToConfirm" id="U4o-Uh-l4n"/>
                                 </connections>
                             </button>
                         </subviews>

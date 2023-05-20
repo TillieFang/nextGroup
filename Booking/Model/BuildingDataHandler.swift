@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BuildingHandler {
+struct BuildingDataHandler {
         
     func getBuildingRooms(building: String) -> [RoomDetails] {
         var rooms : [RoomDetails] = [];
@@ -31,5 +31,7 @@ struct BuildingHandler {
         
         return rooms;
     }
+    
+    
     
 }

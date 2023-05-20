@@ -10,9 +10,21 @@ import UIKit
 
 class ConfirmViewController: UIViewController {
 
+    @IBOutlet weak var bookedRoomLabel: UILabel!
+    @IBOutlet weak var buildingLabel: UILabel!
+    @IBOutlet weak var bookDateTimeLabel: UILabel!
+    
+    var roomToBook : String? = "";
+    var roomBuilding : String? = "";
+    var dateTimeRoom : String? = "";
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        bookedRoomLabel.text = roomToBook;
+        buildingLabel.text = roomBuilding;
+        bookDateTimeLabel.text = dateTimeRoom;
     }
 
     @IBAction func returnToHomePage(_ sender: Any) {

@@ -26,26 +26,30 @@ class RoomsViewController: UIViewController {
     // Variable from the previous window
     var building: String? = "Building 02"
     var date: String? = "01/01/1000"
+        
+    var buildingRooms: [RoomDetails] = []
+    var roomSelected: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let buildingRooms = BuildingHandler().getBuildingRooms(building: building!);
+        buildingRooms = BuildingDataHandler().getBuildingRooms(building: building!)
         
-        roomsTableData = [];
+        roomsTableData = []
         
         for room in buildingRooms {
-            let newRoom : roomInfo = roomInfo(roomNumber: room.roomNumber, capacity: room.capacity);
-            roomsTableData.append(newRoom);
+            
+            // Check if the room slots are available during the selected time or not, refresh each time the time is changed
+            
+            let newRoom : roomInfo = roomInfo(roomNumber: room.roomNumber, capacity: room.capacity)
+            roomsTableData.append(newRoom)
         }
                 
         startingTimeDatePicker.minimumDate = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: Date())
         startingTimeDatePicker.maximumDate = Calendar.current.date(bySettingHour: 21, minute: 0, second: 0, of: Date())
     
     }
-    
-    
     
     @IBAction func stepperTapped(_ sender: UIStepper) {
         let stepperValue = Int(sender.value)
@@ -65,9 +69,6 @@ class RoomsViewController: UIViewController {
         }
     }
 }
-
-
-
 
 extension RoomsViewController : UITableViewDelegate,UITableViewDataSource {
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -91,6 +92,18 @@ extension RoomsViewController : UITableViewDelegate,UITableViewDataSource {
         return roomCell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let roomIndex = indexPath.row;
+        print(roomIndex);
+        
+        /*
+        if let viewController = storyboard?.instantiateViewController(identifier: "TrailViewController") as? TrailViewController {
+            viewController.trail = selectedTrail
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+         */
+    }
+    
     
 //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        selectedIndex = indexPath
@@ -99,4 +112,13 @@ extension RoomsViewController : UITableViewDelegate,UITableViewDataSource {
 //        tableView.reloadRows(at: [selectedIndex!], with: .none)
 //        tableView.endUpdates()
 //    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToConfirm" {
+            let confirmViewController = segue.destination as! ConfirmViewController
+            confirmViewController.roomToBook = buildingRooms[roomSelected].roomNumber
+            confirmViewController.roomBuilding = building
+            confirmViewController.dateTimeRoom = "\(date ?? "Error") - \(timeDurationTextField.text ?? "Error")"
+        }
+    }
 }
