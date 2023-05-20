@@ -118,7 +118,7 @@ extension RoomsViewController : UITableViewDelegate,UITableViewDataSource {
             let confirmViewController = segue.destination as! ConfirmViewController
             confirmViewController.roomToBook = buildingRooms[roomSelected].roomNumber
             confirmViewController.roomBuilding = building
-            confirmViewController.dateTimeRoom = "\(date ?? "Error") - \(timeDurationTextField.text ?? "Error")"
+            confirmViewController.dateTimeRoom = "\(date ?? ErrorHandler().showErrorMessage(errorID: 1)) - \(timeDurationTextField.text ?? ErrorHandler().showErrorMessage(errorID: 2))"
         }
     }
 }
