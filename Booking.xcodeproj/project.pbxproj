@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		207A83582A10850300BDB75E /* BuildingRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A83572A10850300BDB75E /* BuildingRooms.swift */; };
 		2585BD802A0B5D9200B82695 /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2585BD7F2A0B5D9200B82695 /* RoomsViewController.swift */; };
+		25E22D892A1A506300F3BF33 /* ManageBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E22D882A1A506300F3BF33 /* ManageBookingViewController.swift */; };
 		69FB77912A18960700CCDA38 /* BuildingDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FB77902A18960700CCDA38 /* BuildingDataHandler.swift */; };
 		69FB77932A18C2C400CCDA38 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FB77922A18C2C400CCDA38 /* ErrorHandler.swift */; };
 		C05A95362A08CFAF00925C82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05A95352A08CFAF00925C82 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		207A83572A10850300BDB75E /* BuildingRooms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingRooms.swift; sourceTree = "<group>"; };
 		2585BD7F2A0B5D9200B82695 /* RoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
+		25E22D882A1A506300F3BF33 /* ManageBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageBookingViewController.swift; sourceTree = "<group>"; };
 		69FB77902A18960700CCDA38 /* BuildingDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingDataHandler.swift; sourceTree = "<group>"; };
 		69FB77922A18C2C400CCDA38 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		C05A95322A08CFAF00925C82 /* Booking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Booking.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +107,7 @@
 				C0D10FCA2A09EFDE00908B85 /* SettingsViewController.swift */,
 				C0D10FCE2A09F05000908B85 /* ConfirmViewController.swift */,
 				2585BD7F2A0B5D9200B82695 /* RoomsViewController.swift */,
+				25E22D882A1A506300F3BF33 /* ManageBookingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0D10FCF2A09F05000908B85 /* ConfirmViewController.swift in Sources */,
+				25E22D892A1A506300F3BF33 /* ManageBookingViewController.swift in Sources */,
 				2585BD802A0B5D9200B82695 /* RoomsViewController.swift in Sources */,
 				C05A953A2A08CFAF00925C82 /* LogInViewController.swift in Sources */,
 				C05A95362A08CFAF00925C82 /* AppDelegate.swift in Sources */,
