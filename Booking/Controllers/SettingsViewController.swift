@@ -16,6 +16,7 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var continueButton: UIButton!
     
+    @IBOutlet weak var manageBookingsButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class SettingsViewController: UIViewController {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-        datePicker.frame.size = CGSize(width: 0, height: 300)
+        datePicker.frame.size = CGSize(width: 0, height: 225)
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.minimumDate = Date()
 
@@ -36,7 +37,7 @@ class SettingsViewController: UIViewController {
             datePicker.maximumDate = maximumDate }
         
        //to show done button
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 35))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(datePickerDone))
             toolbar.setItems([flexSpace, doneButton], animated: false)
