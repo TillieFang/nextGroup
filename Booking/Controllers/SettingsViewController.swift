@@ -14,8 +14,15 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var datePickerTextField: UITextField!
     
+    @IBOutlet weak var continueButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Disable the continue button initially
+        continueButton.isEnabled = false
+        
         setPopUpButton()
         
         let datePicker = UIDatePicker()
@@ -40,11 +47,19 @@ class SettingsViewController: UIViewController {
         
         
     }
-//to make pop up for buildings
+    
+    //to make pop up for buildings
     func setPopUpButton(){
         
         let optionClosure = {(action : UIAction) in
-            print(action.title)}
+            
+            // Only process the action if the title is not "Buildings"
+            // Enable the continue button when a building is selected
+            if action.title != "Buildings" {
+                print(action.title)
+                self.continueButton.isEnabled = true
+            }
+        }
         
         buildingPopUpButton.menu = UIMenu(children : [
             UIAction(title : "Buildings", state: .on, handler : optionClosure),
