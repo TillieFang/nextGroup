@@ -118,8 +118,7 @@ extension RoomsViewController : UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let roomIndex = indexPath.row;
-        print(roomIndex);
+        roomSelected = indexPath.row;
         
         /*
         if let viewController = storyboard?.instantiateViewController(identifier: "TrailViewController") as? TrailViewController {
