@@ -148,7 +148,7 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M5P-tj-6G3">
                                                 <rect key="frame" x="0.0" y="29" width="293" height="38"/>
-                                                <color key="tintColor" systemColor="opaqueSeparatorColor"/>
+                                                <color key="tintColor" systemColor="labelColor"/>
                                                 <menu key="menu" id="Rcn-fk-4Jv">
                                                     <children>
                                                         <command title="Item 1" id="Q9E-Ok-MLl"/>
@@ -557,6 +557,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="g7B-ck-c8B"/>
                     <connections>
+                        <outlet property="buildingDateLabel" destination="el7-fr-nup" id="ORH-i0-cfR"/>
                         <outlet property="roomsTableView" destination="KZ7-lo-USc" id="zWM-V3-Z8W"/>
                         <outlet property="startingTimeDatePicker" destination="VhQ-lL-rFj" id="Bso-Xf-Mip"/>
                         <outlet property="timeDurationStepper" destination="pba-ad-zgh" id="8Hy-jf-mH6"/>
@@ -572,8 +573,8 @@
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

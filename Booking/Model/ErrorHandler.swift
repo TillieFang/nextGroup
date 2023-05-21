@@ -20,6 +20,10 @@ struct ErrorHandler {
             errorText += ". Invalid booking time, please select a valid booking time between 30 mins and 2 hours."
             break;
         case 3:
+            errorText += ". Invalid building selection, please select a valid building in the previous window."
+            break;
+        case 4:
+            errorText += ". Invalid date selection, please select a valid date in the previous window."
             break;
         default:
             errorText += ", unknown error"

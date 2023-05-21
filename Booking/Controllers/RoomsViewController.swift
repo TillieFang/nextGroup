@@ -14,6 +14,7 @@ struct roomInfo {
 
 class RoomsViewController: UIViewController {
 
+    @IBOutlet weak var buildingDateLabel: UILabel!
     @IBOutlet weak var timeDurationTextField: UITextField!
     @IBOutlet weak var timeDurationStepper: UIStepper!
     @IBOutlet weak var roomsTableView: UITableView!
@@ -21,12 +22,12 @@ class RoomsViewController: UIViewController {
     
     var roomsTableData : [roomInfo] = []
     
-    var timeDuration = 0
+    var stepperValue: Int = 30
     var selectedIndex : IndexPath?
     // Variable from the previous window
     var building: String? = "Building 02"
     var date: String? = "01/01/1000"
-        
+
     var buildingRooms: [RoomDetails] = []
     var roomSelected: Int = 0
     
@@ -34,7 +35,19 @@ class RoomsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        buildingDateLabel.text = "\(building ?? ErrorHandler().showErrorMessage(errorID: 3))/\(date ?? ErrorHandler().showErrorMessage(errorID: 4))"
+        
         buildingRooms = BuildingDataHandler().getBuildingRooms(building: building!)
+        
+        populateAvailableRooms()
+
+        startingTimeDatePicker.minimumDate = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: Date())
+        startingTimeDatePicker.maximumDate = Calendar.current.date(bySettingHour: 21, minute: 0, second: 0, of: Date())
+    
+    }
+    
+    
+    func populateAvailableRooms() {
         
         roomsTableData = []
         
@@ -43,16 +56,18 @@ class RoomsViewController: UIViewController {
             // Check if the room slots are available during the selected time or not, refresh each time the time is changed
             
             let newRoom : roomInfo = roomInfo(roomNumber: room.roomNumber, capacity: room.capacity)
-            roomsTableData.append(newRoom)
+            // Compare if the room is available during the entire reservation time
+            if (true) {
+                roomsTableData.append(newRoom)
+            }
         }
-                
-        startingTimeDatePicker.minimumDate = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: Date())
-        startingTimeDatePicker.maximumDate = Calendar.current.date(bySettingHour: 21, minute: 0, second: 0, of: Date())
-    
     }
     
+    
+    
+    
     @IBAction func stepperTapped(_ sender: UIStepper) {
-        let stepperValue = Int(sender.value)
+        stepperValue = Int(sender.value)
         timeDurationTextField.text = formatTime(timeValue: stepperValue)
     }
     
@@ -66,6 +81,16 @@ class RoomsViewController: UIViewController {
         } else {
             let formattedTime = String("\(hour) hr  \(minute) min")
             return formattedTime
+        }
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToConfirm" {
+            let confirmViewController = segue.destination as! ConfirmViewController
+            confirmViewController.roomToBook = buildingRooms[roomSelected].roomNumber
+            confirmViewController.roomBuilding = building
+            confirmViewController.dateTimeRoom = "\(date ?? ErrorHandler().showErrorMessage(errorID: 1)) - \(timeDurationTextField.text ?? ErrorHandler().showErrorMessage(errorID: 2))"
         }
     }
 }
@@ -112,13 +137,4 @@ extension RoomsViewController : UITableViewDelegate,UITableViewDataSource {
 //        tableView.reloadRows(at: [selectedIndex!], with: .none)
 //        tableView.endUpdates()
 //    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToConfirm" {
-            let confirmViewController = segue.destination as! ConfirmViewController
-            confirmViewController.roomToBook = buildingRooms[roomSelected].roomNumber
-            confirmViewController.roomBuilding = building
-            confirmViewController.dateTimeRoom = "\(date ?? ErrorHandler().showErrorMessage(errorID: 1)) - \(timeDurationTextField.text ?? ErrorHandler().showErrorMessage(errorID: 2))"
-        }
-    }
 }
