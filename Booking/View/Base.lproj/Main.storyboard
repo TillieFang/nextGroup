@@ -96,7 +96,7 @@
                                                     <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <segue destination="dEP-MF-VM2" kind="show" id="L8b-HX-Jnx"/>
+                                                    <segue destination="dEP-MF-VM2" kind="show" identifier="goToSettings" id="L8b-HX-Jnx"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -569,6 +569,9 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="104.66666666666667" id="cap-3F-1Mb"/>
                                                 </constraints>
+                                                <connections>
+                                                    <action selector="startTimeChanged:" destination="HdQ-GK-dv4" eventType="valueChanged" id="CBd-fP-u6Z"/>
+                                                </connections>
                                             </datePicker>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

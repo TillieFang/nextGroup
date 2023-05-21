@@ -17,6 +17,9 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var continueButton: UIButton!
     
     @IBOutlet weak var manageBookingsButton: UIButton!
+
+    var userEmail: String? = nil
+    var bookingDate: Date? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +35,8 @@ class SettingsViewController: UIViewController {
         datePicker.frame.size = CGSize(width: 0, height: 225)
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.minimumDate = Date()
-
+        bookingDate = datePicker.date
+        
         if let maximumDate = Calendar.current.date(byAdding: .day, value: 7, to: Date()) {
             datePicker.maximumDate = maximumDate }
         
@@ -44,8 +48,7 @@ class SettingsViewController: UIViewController {
     
         datePickerTextField.inputView = datePicker
         datePickerTextField.inputAccessoryView = toolbar
-        datePickerTextField.text = formatDate(date: Date())
-        
+        datePickerTextField.text = DateTimeHandler().formatDate(date: Date())
         
     }
     
@@ -75,13 +78,8 @@ class SettingsViewController: UIViewController {
     }
     
     @objc func dateChange (datePicker: UIDatePicker){
-        datePickerTextField.text = formatDate(date: datePicker.date)
-    }
-    
-    func formatDate (date : Date) -> String{
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE, MMMM dd, yyyy"
-        return formatter.string(from: date)
+        bookingDate = datePicker.date
+        datePickerTextField.text = DateTimeHandler().formatDate(date: bookingDate)
     }
     
     @objc func datePickerDone() {
@@ -93,7 +91,8 @@ class SettingsViewController: UIViewController {
         if segue.identifier == "goToRoom" {
             let roomsViewController = segue.destination as! RoomsViewController;
             roomsViewController.building = buildingPopUpButton.currentTitle
-            roomsViewController.date = datePickerTextField.text
+            roomsViewController.bookingDate = bookingDate
+            roomsViewController.userEmail = userEmail
         }
     }
 }

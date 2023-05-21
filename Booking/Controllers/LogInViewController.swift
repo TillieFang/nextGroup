@@ -13,6 +13,7 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
+    var userEmail: String? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +29,13 @@ class LogInViewController: UIViewController {
             let password = passwordTextField.text, !password.isEmpty,
             isValidEmail(email)
         else {
+            userEmail = nil
             loginButton.isEnabled = false
             return
         }
+        
+        userEmail = emailTextField.text!
+        
         loginButton.isEnabled = true
     }
     
@@ -43,6 +48,13 @@ class LogInViewController: UIViewController {
 
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         // Handle login action here
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToSettings" {
+            let settingsViewController = segue.destination as! SettingsViewController;
+            settingsViewController.userEmail = userEmail
+        }
     }
 }
 

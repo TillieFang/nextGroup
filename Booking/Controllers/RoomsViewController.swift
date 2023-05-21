@@ -21,12 +21,14 @@ class RoomsViewController: UIViewController {
     @IBOutlet weak var startingTimeDatePicker: UIDatePicker!
     
     var roomsTableData : [roomInfo] = []
-    
+        
     var stepperValue: Int = 30
     var selectedIndex : IndexPath?
     // Variable from the previous window
-    var building: String? = "Building 02"
-    var date: String? = "01/01/1000"
+    var building: String? = nil
+    var bookingDate: Date? = nil
+    var starTime: Date? = nil
+    var userEmail: String? = nil
 
     var buildingRooms: [RoomDetails] = []
     var roomSelected: Int = 0
@@ -35,15 +37,20 @@ class RoomsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        buildingDateLabel.text = "\(building ?? ErrorHandler().showErrorMessage(errorID: 3))/\(date ?? ErrorHandler().showErrorMessage(errorID: 4))"
+        buildingDateLabel.text = "\(building ?? ErrorHandler().showErrorMessage(errorID: 3))/\(DateTimeHandler().formatDate(date: bookingDate))"
         
-        buildingRooms = BuildingDataHandler().getBuildingRooms(building: building!)
         
-        populateAvailableRooms()
+        buildingRooms = BookingDataHandler().getBuildingRooms(building: building!)
 
+        startingTimeDatePicker.locale = Locale(identifier: "en_AU")
+        startingTimeDatePicker.timeZone = TimeZone(abbreviation: "Australia/Sydney")
         startingTimeDatePicker.minimumDate = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: Date())
         startingTimeDatePicker.maximumDate = Calendar.current.date(bySettingHour: 21, minute: 0, second: 0, of: Date())
-    
+        
+        print ("Picker initial value \(startingTimeDatePicker.date)")
+        starTime = startingTimeDatePicker.date
+
+        populateAvailableRooms()
     }
     
     
@@ -51,46 +58,47 @@ class RoomsViewController: UIViewController {
         
         roomsTableData = []
         
+        let key = BookingDataHandler().formatStorageData(room: buildingRooms[roomSelected].roomNumber, date: bookingDate)
+        print("Got booked rooms \(BookingDataHandler().getRoomBookingSlots(key: key)) with Key \(key)")
+
         for room in buildingRooms {
             
             // Check if the room slots are available during the selected time or not, refresh each time the time is changed
+            if !BookingDataHandler().isRoomAvailable(room: room.roomNumber, date: bookingDate ?? Date.now, time: starTime ?? Date.now, length: stepperValue) {
+                print("Room \(room.roomNumber) not available")
+                continue
+            }
             
             let newRoom : roomInfo = roomInfo(roomNumber: room.roomNumber, capacity: room.capacity)
-            // Compare if the room is available during the entire reservation time
-            if (true) {
-                roomsTableData.append(newRoom)
-            }
+            roomsTableData.append(newRoom)
         }
+        roomsTableView.reloadData()
     }
     
     
+    @IBAction func startTimeChanged(_ sender: UIDatePicker) {
+        starTime = sender.date
+        print("Date Picker \(DateTimeHandler().formatTime(date: sender.date))")
+        populateAvailableRooms()
+    }
     
     
     @IBAction func stepperTapped(_ sender: UIStepper) {
         stepperValue = Int(sender.value)
-        timeDurationTextField.text = formatTime(timeValue: stepperValue)
+        timeDurationTextField.text = DateTimeHandler().formatBookingTime(timeValue: stepperValue)
+        populateAvailableRooms()
     }
-    
-    
-    func formatTime(timeValue:Int) -> String{
-        let hour = Int(timeValue / 60)
-        let minute = String(timeValue % 60)
-        if hour == 0 {
-            let formattedTime = String("\(minute) min")
-            return formattedTime
-        } else {
-            let formattedTime = String("\(hour) hr  \(minute) min")
-            return formattedTime
-        }
-    }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToConfirm" {
             let confirmViewController = segue.destination as! ConfirmViewController
             confirmViewController.roomToBook = buildingRooms[roomSelected].roomNumber
+            confirmViewController.userEmail = userEmail
+            confirmViewController.bookingDuration = stepperValue
             confirmViewController.roomBuilding = building
-            confirmViewController.dateTimeRoom = "\(date ?? ErrorHandler().showErrorMessage(errorID: 1)) - \(timeDurationTextField.text ?? ErrorHandler().showErrorMessage(errorID: 2))"
+            
+            confirmViewController.bookingTime = starTime
+            confirmViewController.bookingDate = bookingDate //"\(date ?? ErrorHandler().showErrorMessage(errorID: 1)) - \(timeDurationTextField.text ?? ErrorHandler().showErrorMessage(errorID: 2))"
         }
     }
 }
