@@ -69,14 +69,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGM-fg-JO2">
                                         <rect key="frame" x="0.0" y="645" width="283" height="70"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRx-cr-tzF">
+                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRx-cr-tzF">
                                                 <rect key="frame" x="0.0" y="10" width="283" height="50"/>
-                                                <color key="backgroundColor" name="AccentColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Z88-Aa-djg"/>
                                                 </constraints>
+                                                <color key="tintColor" name="AccentColor"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Login">
+                                                <buttonConfiguration key="configuration" style="filled" title="Login">
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                                     <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
                                                 </buttonConfiguration>
@@ -112,7 +112,7 @@
                     <navigationItem key="navigationItem" id="qnk-xY-BbC"/>
                     <connections>
                         <outlet property="emailTextField" destination="EJL-Zs-ciV" id="6st-NX-eDr"/>
-                        <outlet property="loginButton" destination="AGM-fg-JO2" id="tdb-OK-57i"/>
+                        <outlet property="loginButton" destination="VRx-cr-tzF" id="27n-I3-0ca"/>
                         <outlet property="passwordTextField" destination="CtC-O4-tqo" id="XGU-Vs-kaZ"/>
                     </connections>
                 </viewController>
@@ -178,14 +178,14 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kCg-BA-6Wz">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kCg-BA-6Wz">
                                         <rect key="frame" x="0.0" y="660" width="293" height="50"/>
-                                        <color key="backgroundColor" name="AccentColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="9iH-6e-gh6"/>
                                         </constraints>
+                                        <color key="tintColor" name="AccentColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Continue">
+                                        <buttonConfiguration key="configuration" style="filled" title="Continue">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
