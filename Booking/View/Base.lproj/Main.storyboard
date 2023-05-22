@@ -234,7 +234,7 @@
                                                     <color key="baseForegroundColor" name="AccentColor"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <segue destination="OXd-IX-bEO" kind="show" id="iHV-YI-VZS"/>
+                                                    <segue destination="OXd-IX-bEO" kind="show" identifier="goToBookings" id="iHV-YI-VZS"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -281,39 +281,39 @@
                                 <rect key="frame" x="20" y="153" width="353" height="585"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookingCell" id="niY-jq-2Id">
-                                        <rect key="frame" x="0.0" y="50" width="353" height="122.66666412353516"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookingCell" id="niY-jq-2Id" customClass="BookingTableViewCell" customModule="Booking" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="353" height="135.33332824707031"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="niY-jq-2Id" id="bbi-hh-fgB">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="122.66666412353516"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="135.33332824707031"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ZjD-mQ-lgY">
-                                                    <rect key="frame" x="12" y="12" width="329" height="98.666666666666671"/>
+                                                    <rect key="frame" x="12" y="11.999999999999993" width="329" height="111.33333333333331"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5ld-6w-QLG">
-                                                            <rect key="frame" x="0.0" y="0.0" width="164.66666666666666" height="98.666666666666671"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="164.66666666666666" height="111.33333333333333"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9PA-RY-BEj">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="164.66666666666666" height="24.666666666666668"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="164.66666666666666" height="28"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Haa-Bk-gX7">
-                                                                    <rect key="frame" x="0.0" y="24.666666666666664" width="164.66666666666666" height="24.666666666666664"/>
+                                                                    <rect key="frame" x="0.0" y="28" width="164.66666666666666" height="27.666666666666671"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cv-th-6mt">
-                                                                    <rect key="frame" x="0.0" y="49.333333333333336" width="164.66666666666666" height="24.666666666666664"/>
+                                                                    <rect key="frame" x="0.0" y="55.666666666666671" width="164.66666666666666" height="28"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="booking name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Abx-Fa-GUK">
-                                                                    <rect key="frame" x="0.0" y="74" width="164.66666666666666" height="24.666666666666671"/>
+                                                                    <rect key="frame" x="0.0" y="83.666666666666671" width="164.66666666666666" height="27.666666666666671"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -321,18 +321,20 @@
                                                             </subviews>
                                                         </stackView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCJ-is-YJT">
-                                                            <rect key="frame" x="164.66666666666663" y="0.0" width="164.33333333333337" height="98.666666666666671"/>
+                                                            <rect key="frame" x="164.66666666666663" y="0.0" width="164.33333333333337" height="111.33333333333333"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r6j-Hg-T5w">
-                                                                    <rect key="frame" x="87.666666666666657" y="53.666666666666671" width="76.666666666666657" height="45"/>
+                                                                    <rect key="frame" x="87.666666666666657" y="66.333333333333329" width="76.666666666666657" height="45"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="45" id="4O5-u1-f7e"/>
                                                                     </constraints>
                                                                     <state key="normal" title="Button"/>
                                                                     <buttonConfiguration key="configuration" style="filled" title="Cancel"/>
+                                                                    <connections>
+                                                                        <action selector="cancelBooking:" destination="niY-jq-2Id" eventType="touchUpInside" id="OUv-CF-2sC"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstItem="r6j-Hg-T5w" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aCJ-is-YJT" secondAttribute="leading" constant="20" symbolic="YES" id="AII-lP-k58"/>
                                                                 <constraint firstAttribute="trailing" secondItem="r6j-Hg-T5w" secondAttribute="trailing" id="jwD-pM-K00"/>
@@ -354,6 +356,13 @@
                                                 <constraint firstAttribute="bottom" secondItem="ZjD-mQ-lgY" secondAttribute="bottom" constant="12" id="NZ7-MA-QZj"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bookingNameLabel" destination="Abx-Fa-GUK" id="IrV-bc-35x"/>
+                                            <outlet property="bookingView" destination="bbi-hh-fgB" id="4G5-rj-4Xt"/>
+                                            <outlet property="locationLabel" destination="Haa-Bk-gX7" id="h26-j0-HeD"/>
+                                            <outlet property="roomNumberLabel" destination="9PA-RY-BEj" id="IL1-dh-kgo"/>
+                                            <outlet property="timeLabel" destination="8cv-th-6mt" id="48X-fZ-KJk"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -390,7 +399,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="C9h-dO-WL0"/>
                     <connections>
-                        <outlet property="myBookingsTableView" destination="rY2-Jc-iBF" id="yBq-CG-htG"/>
+                        <outlet property="bookingsTableView" destination="rY2-Jc-iBF" id="gwA-Gg-lha"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YPm-g5-R4Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -25,6 +25,9 @@ struct ErrorHandler {
         case 4:
             errorText += ". Invalid date selection, please select a valid date in the previous window."
             break;
+        case 12:
+            
+            break;
         default:
             errorText += ", unknown error"
             break;

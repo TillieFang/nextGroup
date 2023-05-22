@@ -10,6 +10,7 @@
 		207A83582A10850300BDB75E /* BuildingRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A83572A10850300BDB75E /* BuildingRooms.swift */; };
 		2585BD802A0B5D9200B82695 /* RoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2585BD7F2A0B5D9200B82695 /* RoomsViewController.swift */; };
 		25E22D892A1A506300F3BF33 /* ManageBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E22D882A1A506300F3BF33 /* ManageBookingViewController.swift */; };
+		69B10FEC2A1B803100FB7A0D /* BookingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B10FEB2A1B803100FB7A0D /* BookingTableViewCell.swift */; };
 		69D9AB882A1A83F400D58C9D /* BookingDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D9AB872A1A83F400D58C9D /* BookingDataHandler.swift */; };
 		69D9AB8A2A1A83FC00D58C9D /* DateTimeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D9AB892A1A83FC00D58C9D /* DateTimeHandler.swift */; };
 		69FB77932A18C2C400CCDA38 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69FB77922A18C2C400CCDA38 /* ErrorHandler.swift */; };
@@ -27,6 +28,7 @@
 		207A83572A10850300BDB75E /* BuildingRooms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingRooms.swift; sourceTree = "<group>"; };
 		2585BD7F2A0B5D9200B82695 /* RoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsViewController.swift; sourceTree = "<group>"; };
 		25E22D882A1A506300F3BF33 /* ManageBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageBookingViewController.swift; sourceTree = "<group>"; };
+		69B10FEB2A1B803100FB7A0D /* BookingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTableViewCell.swift; sourceTree = "<group>"; };
 		69D9AB872A1A83F400D58C9D /* BookingDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingDataHandler.swift; sourceTree = "<group>"; };
 		69D9AB892A1A83FC00D58C9D /* DateTimeHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimeHandler.swift; sourceTree = "<group>"; };
 		69FB77922A18C2C400CCDA38 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				69D9AB872A1A83F400D58C9D /* BookingDataHandler.swift */,
 				207A83572A10850300BDB75E /* BuildingRooms.swift */,
 				69FB77922A18C2C400CCDA38 /* ErrorHandler.swift */,
+				69B10FEB2A1B803100FB7A0D /* BookingTableViewCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				2585BD802A0B5D9200B82695 /* RoomsViewController.swift in Sources */,
 				C05A953A2A08CFAF00925C82 /* LogInViewController.swift in Sources */,
 				C05A95362A08CFAF00925C82 /* AppDelegate.swift in Sources */,
+				69B10FEC2A1B803100FB7A0D /* BookingTableViewCell.swift in Sources */,
 				C05A95382A08CFAF00925C82 /* SceneDelegate.swift in Sources */,
 				69D9AB882A1A83F400D58C9D /* BookingDataHandler.swift in Sources */,
 				69FB77932A18C2C400CCDA38 /* ErrorHandler.swift in Sources */,

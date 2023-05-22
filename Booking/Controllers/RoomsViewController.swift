@@ -10,6 +10,7 @@ import UIKit
 struct roomInfo {
     var roomNumber : String
     var capacity : Int
+    var index: Int
 }
 
 class RoomsViewController: UIViewController {
@@ -47,7 +48,7 @@ class RoomsViewController: UIViewController {
         startingTimeDatePicker.minimumDate = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: Date())
         startingTimeDatePicker.maximumDate = Calendar.current.date(bySettingHour: 21, minute: 0, second: 0, of: Date())
         
-        print ("Picker initial value \(startingTimeDatePicker.date)")
+        //print ("Picker initial value \(startingTimeDatePicker.date)")
         starTime = startingTimeDatePicker.date
 
         populateAvailableRooms()
@@ -59,17 +60,17 @@ class RoomsViewController: UIViewController {
         roomsTableData = []
         
         let key = BookingDataHandler().formatStorageData(room: buildingRooms[roomSelected].roomNumber, date: bookingDate)
-        print("Got booked rooms \(BookingDataHandler().getRoomBookingSlots(key: key)) with Key \(key)")
+        //print("Got booked rooms \(BookingDataHandler().getRoomBookingSlots(key: key)) with Key \(key)")
 
-        for room in buildingRooms {
+        for (index, room) in buildingRooms.enumerated() {
             
             // Check if the room slots are available during the selected time or not, refresh each time the time is changed
             if !BookingDataHandler().isRoomAvailable(room: room.roomNumber, date: bookingDate ?? Date.now, time: starTime ?? Date.now, length: stepperValue) {
-                print("Room \(room.roomNumber) not available")
+                //print("Room \(room.roomNumber) not available")
                 continue
             }
             
-            let newRoom : roomInfo = roomInfo(roomNumber: room.roomNumber, capacity: room.capacity)
+            let newRoom : roomInfo = roomInfo(roomNumber: room.roomNumber, capacity: room.capacity, index: index)
             roomsTableData.append(newRoom)
         }
         roomsTableView.reloadData()
@@ -92,6 +93,7 @@ class RoomsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToConfirm" {
             let confirmViewController = segue.destination as! ConfirmViewController
+            print ("Sending info with room selected as \(roomSelected) val \(buildingRooms[roomSelected].roomNumber)")
             confirmViewController.roomToBook = buildingRooms[roomSelected].roomNumber
             confirmViewController.userEmail = userEmail
             confirmViewController.bookingDuration = stepperValue
@@ -126,8 +128,10 @@ extension RoomsViewController : UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        roomSelected = indexPath.row;
         
+        roomSelected = roomsTableData[indexPath.row].index;
+        print("Room selected is \(roomSelected)")
+
         /*
         if let viewController = storyboard?.instantiateViewController(identifier: "TrailViewController") as? TrailViewController {
             viewController.trail = selectedTrail

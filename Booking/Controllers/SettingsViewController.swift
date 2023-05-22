@@ -88,11 +88,23 @@ class SettingsViewController: UIViewController {
 
     // create override func to passing the value
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToRoom" {
+        
+        switch segue.identifier {
+        case "goToRoom":
             let roomsViewController = segue.destination as! RoomsViewController;
             roomsViewController.building = buildingPopUpButton.currentTitle
             roomsViewController.bookingDate = bookingDate
             roomsViewController.userEmail = userEmail
+            break;
+        case "goToBookings":
+            let manageBookingViewController = segue.destination as! ManageBookingViewController;
+            manageBookingViewController.userEmail = userEmail
+            break;
+        default:
+            break;
         }
+        //if segue.identifier == "goToRoom" {
+        //}
+        
     }
 }

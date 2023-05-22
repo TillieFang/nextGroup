@@ -13,10 +13,8 @@ struct bookedHour: Codable{
     var bookedRoom: String
     var bookingName: String
     var userEmail: String
-}
-
-struct bookedEmail: Codable {
-    var bookedHours: [bookedHour]
+    var duration: Int
+    var isStartingHour: Bool
 }
 
 struct BookingDataHandler {
@@ -72,21 +70,20 @@ struct BookingDataHandler {
         
         let bookingKey = formatStorageData(room: room, date: date)
 
-        print("Calling booking room with key \(bookingKey)")
+        //print("Calling booking room with key \(bookingKey)")
 
         var roomBookingSlots: [bookedHour] = getRoomBookingSlots(key: bookingKey)
-        print("Got room booking info \(roomBookingSlots)")
+        //print("Got room booking info \(roomBookingSlots)")
         
         // Split booking into 30 mins slots
-        
-        var roomBooking : [bookedHour] = convertBookingToBookedHour(bookedRoom: room, date: date, time: time, length: length, bookingName: bookingName, userEmail: userEmail)
+        let roomBooking : [bookedHour] = convertBookingToBookedHour(bookedRoom: room, date: date, time: time, length: length, bookingName: bookingName, userEmail: userEmail)
         
         for booking in roomBooking {
             roomBookingSlots.append(booking)
         }
         
-        var userBookingKeys = getUserBookings(email: userEmail)
-        print("Got User Bookings \(userBookingKeys)")
+        var userBookingKeys: [String] = getUserBookings(email: userEmail)
+        //print("Got User Bookings \(userBookingKeys)")
 
         userBookingKeys.append(bookingKey)
 
@@ -98,6 +95,50 @@ struct BookingDataHandler {
         // Associate and store the booking date with the email to edit later
         defaults.set(try? PropertyListEncoder().encode(userBookingKeys), forKey: userEmail)
                 
+        print ("Defaults booked slots \(roomBookingSlots) and keys \(userBookingKeys)")
+        
+    }
+    
+    
+    func removeBooking(bookingKey: String, bookingReference: bookedHour) {
+        
+        print ("Trying to remove the booking with Key \(bookingKey) and Ref \(bookingReference)")
+        
+        let defaults = UserDefaults.standard
+        
+        var bookingsWithKey = getRoomBookingSlots(key: bookingKey)
+
+        print ("Trying to remove booking key with values \(bookingsWithKey)")
+
+        var userBookingKeys: [String] = getUserBookings(email: bookingReference.userEmail)
+
+        for (index, storedBookingKey) in userBookingKeys.enumerated() {
+            if storedBookingKey == bookingKey {
+                userBookingKeys.remove(at: index)
+                break
+            }
+        }
+
+        print ("Trying to remove booking key with values \(bookingsWithKey)")
+
+        //print ("bookings before deletion \(bookingsWithKey)")
+
+        for timeSlot in stride(from: 0, to: bookingReference.duration, by: 30) {
+        innerloop: for (index, booking) in bookingsWithKey.enumerated() {
+                if booking.bookingHour == bookingReference.bookingHour, booking.bookedRoom == bookingReference.bookedRoom, booking.userEmail == bookingReference.userEmail {
+                    bookingsWithKey.remove(at: index)
+                    break innerloop
+                }
+            }
+        }
+        
+        //print ("bookings after deletion \(bookingsWithKey)")
+        
+        // Store the booking information by room and date
+        defaults.set(try? PropertyListEncoder().encode(bookingsWithKey), forKey: bookingKey)
+        
+        // Associate and store the booking date with the email to edit later
+        defaults.set(try? PropertyListEncoder().encode(userBookingKeys), forKey: bookingReference.userEmail)
     }
     
     func isRoomAvailable(room: String, date: Date, time: Date, length: Int)-> Bool {
@@ -130,7 +171,7 @@ struct BookingDataHandler {
         var bookings: [bookedHour] = []
                 
         for timeSlot in stride(from: 0, to: length, by: 30) {
-            let newSlot: bookedHour = bookedHour(bookingDate: DateTimeHandler().formatDate(date: date), bookingHour: DateTimeHandler().formatTime(date: time.addingTimeInterval(Double(timeSlot) * 60)), bookedRoom: bookedRoom, bookingName: bookingName, userEmail: userEmail)
+            let newSlot: bookedHour = bookedHour(bookingDate: DateTimeHandler().formatDate(date: date), bookingHour: DateTimeHandler().formatTime(date: time.addingTimeInterval(Double(timeSlot) * 60)), bookedRoom: bookedRoom, bookingName: bookingName, userEmail: userEmail, duration: length, isStartingHour: timeSlot == 0 ? true : false)
             bookings.append(newSlot)
         }
 
