@@ -10,11 +10,13 @@ import UIKit
 
 class ConfirmViewController: UIViewController {
 
+    // Confirm view outlet connections
     @IBOutlet weak var bookedRoomLabel: UILabel!
     @IBOutlet weak var buildingLabel: UILabel!
     @IBOutlet weak var bookDateTimeLabel: UILabel!
     @IBOutlet weak var bookingDurationLabel: UILabel!
     
+    // Variables to store and show the booking information
     var roomToBook: String? = nil
     var roomBuilding: String? = nil
     var bookingDate: Date? = nil
@@ -23,60 +25,49 @@ class ConfirmViewController: UIViewController {
     var bookingName: String = ""
     var userEmail: String? = nil
     
+    // Add the upcoming variables to the label items
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
                 
         bookedRoomLabel.text = roomToBook
         buildingLabel.text = roomBuilding
         bookDateTimeLabel.text = DateTimeHandler().formatDate(date: bookingDate)
-        bookingDurationLabel.text = "\(DateTimeHandler().formatTime(date: bookingTime)) - \(DateTimeHandler().formatBookingTime(timeValue: bookingDuration!))"
-        
-        print("Got user email as \(userEmail ?? "NULL!")")
+        bookingDurationLabel.text = "\(DateTimeHandler().formatTime(date: bookingTime)) - \(DateTimeHandler().formatBookingTime(timeValue: bookingDuration!))"        
     }
 
+    // Button to book the room and go to the manage booking page
     @IBAction func returnToHomePage(_ sender: Any) {
-        
-        /*
-        guard roomToBook == nil, bookingDate == nil, bookingTime == nil , userEmail == nil else {
-            ErrorHandler().showErrorMessage(errorID: 5)
-            return
-        }
-        */
         
         // Add guard checks and warnings if any value is missinh
         guard let roomVal = roomToBook else {
-            ErrorHandler().showErrorMessage(errorID: 8)
+            print(ErrorHandler().showErrorMessage(errorID: 2))
             return
         }
         guard let dateVal = bookingDate else {
-            ErrorHandler().showErrorMessage(errorID: 9)
+            print(ErrorHandler().showErrorMessage(errorID: 3))
             return
         }
         guard let timeVal = bookingTime else {
-            ErrorHandler().showErrorMessage(errorID: 10)
+            print(ErrorHandler().showErrorMessage(errorID: 4))
             return
         }
         guard let durationVal = bookingDuration else {
-            ErrorHandler().showErrorMessage(errorID: 11)
+            print(ErrorHandler().showErrorMessage(errorID: 5))
             return
         }
         guard let emailVal = userEmail else {
-            ErrorHandler().showErrorMessage(errorID: 12)
+            print(ErrorHandler().showErrorMessage(errorID: 6))
             return
         }
 
         BookingDataHandler().bookRoom(room: roomVal, date: dateVal, time: timeVal, length: durationVal, bookingName: bookingName, userEmail: emailVal)
         
-//        if let settingsVC = self.navigationController?.viewControllers[1] {
-//                    self.navigationController?.popToViewController(settingsVC, animated: true)
-//        }
         let mybookingsVC = storyboard?.instantiateViewController(withIdentifier: "ManageBookingViewController") as! ManageBookingViewController
         self.navigationController?.pushViewController(mybookingsVC, animated: true)
         mybookingsVC.userEmail = userEmail
-//        mybookingsVC.navigationItem.setHidesBackButton(true, animated: true)
      }
     
+    // Action to return to the room selection view
     @IBAction func returnToSelectRoom(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }

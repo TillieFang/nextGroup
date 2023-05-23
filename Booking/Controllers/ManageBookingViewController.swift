@@ -9,29 +9,30 @@ import UIKit
 
 class ManageBookingViewController : UIViewController{
         
+    // View controller reference and variables to show the booking data
     @IBOutlet weak var bookingsTableView: UITableView!
-    var bookingsTableData : [bookedHour] = [] //bookedEmail
+    var bookingsTableData : [bookedHour] = []
     var bookingsTableDataKey: [String] = []
     var userBookings: [String] = []
     var userEmail : String? = nil
-    
+
+    // check if the email is valid and update the bookings of that user email
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: true)
 
         guard let email = userEmail else {
-            ErrorHandler().showErrorMessage(errorID: 12)
+            print(ErrorHandler().showErrorMessage(errorID: 6))
             return
         }
                 
         updateBookings(email: email)
-        
-        print("User bookings \(bookingsTableData)")
-        
+                
         bookingsTableView.delegate = self
         bookingsTableView.dataSource = self
     }
         
+    // Action to return home
     @IBAction func returnToHome(_ sender: Any) {
         if let settingsVC = self.navigationController?.viewControllers[1] {
             let settingsVCD = settingsVC as! SettingsViewController
@@ -40,19 +41,18 @@ class ManageBookingViewController : UIViewController{
         }
     }
     
-    
+    // Refresh the bookings associated to an email and add it to the table view data
     func updateBookings(email: String) {
 
         bookingsTableData = []
         bookingsTableDataKey = []
 
         userBookings = BookingDataHandler().getUserBookings(email: email)
-        
-        print("User bookings keys \(userBookings) with email \(email) userEmail \(userEmail)")
-        
+                
         for booking in userBookings {
             let bookedSlotsWithKey = BookingDataHandler().getRoomBookingSlots(key: booking)
             
+            // Loop through the booked slots and add it to the user if it's not duplicated
             for bookedSlot in bookedSlotsWithKey {
                 let bookingExist = bookingsTableData.contains{ booking in
                     if booking == bookedSlot {
@@ -76,16 +76,18 @@ class ManageBookingViewController : UIViewController{
         }
     }
     
+    // Reload the table view information
     func reloadTableView() {
         updateBookings(email: userEmail!)
         
-        print ("Should reload data with val \(userBookings) tableData \(bookingsTableData)!!")
-
         bookingsTableView.reloadData()
     }
 }
 
+// Extension to the table view
 extension ManageBookingViewController : UITableViewDelegate, UITableViewDataSource {
+
+    // Create the custom booking cell based on the number of bookings
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let bookingCell = tableView.dequeueReusableCell(withIdentifier: "bookingCell", for: indexPath) as! BookingTableViewCell
         let booking = bookingsTableData[indexPath.row]
@@ -99,6 +101,7 @@ extension ManageBookingViewController : UITableViewDelegate, UITableViewDataSour
         return bookingCell
     }
     
+    // return the number of rows based on the user bookings
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bookingsTableData.count
     }
