@@ -15,6 +15,8 @@ struct roomInfo {
 
 class RoomsViewController: UIViewController {
 
+    
+    // RoomView outlet connections
     @IBOutlet weak var buildingDateLabel: UILabel!
     @IBOutlet weak var timeDurationTextField: UITextField!
     @IBOutlet weak var timeDurationStepper: UIStepper!
@@ -22,57 +24,52 @@ class RoomsViewController: UIViewController {
     @IBOutlet weak var startingTimeDatePicker: UIDatePicker!
     @IBOutlet weak var bookingButton: UIButton!
     
+    // Variable to hold the rooms information
     var roomsTableData : [roomInfo] = []
         
+    // Variables getting the values of current view
     var stepperValue: Int = 30
     var selectedIndex : IndexPath?
+    var buildingRooms: [RoomDetails] = []
+    var roomSelected: Int = 0
+
     // Variable from the previous window
     var building: String? = nil
     var bookingDate: Date? = nil
     var starTime: Date? = nil
     var userEmail: String? = nil
 
-    var buildingRooms: [RoomDetails] = []
-    var roomSelected: Int = 0
-    
+    // Set up the view, disabling the booking button until a room is selected and configuring the booking timezone
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         bookingButton.isEnabled = false
         
-        buildingDateLabel.text = "\(building ?? ErrorHandler().showErrorMessage(errorID: 3))/\(DateTimeHandler().formatDate(date: bookingDate))"
+        buildingDateLabel.text = "\(building ?? ErrorHandler().showErrorMessage(errorID: 1))/\(DateTimeHandler().formatDate(date: bookingDate))"
         
         
         buildingRooms = BookingDataHandler().getBuildingRooms(building: building!)
-        print("Got building rooms \(buildingRooms)")
 
+        // Timezone configuration
         startingTimeDatePicker.locale = Locale(identifier: "en_AU")
         startingTimeDatePicker.timeZone = TimeZone(abbreviation: "Australia/Sydney")
         startingTimeDatePicker.minimumDate = Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: Date())
         startingTimeDatePicker.maximumDate = Calendar.current.date(bySettingHour: 21, minute: 0, second: 0, of: Date())
         
-        //print ("Picker initial value \(startingTimeDatePicker.date)")
         starTime = startingTimeDatePicker.date
 
         populateAvailableRooms()
-        print ("Got email \(userEmail)")
     }
     
-    
+    // Function to check the rooms available and refresh the TableView
     func populateAvailableRooms() {
         
         roomsTableData = []
         
-        //let key = BookingDataHandler().formatStorageData(room: buildingRooms[roomSelected].roomNumber, date: bookingDate)
-        //print("Got booked rooms \(BookingDataHandler().getRoomBookingSlots(key: key)) with Key \(key)")
-
         for (index, room) in buildingRooms.enumerated() {
             
             // Check if the room slots are available during the selected time or not, refresh each time the time is changed
             if !BookingDataHandler().isRoomAvailable(room: room.roomNumber, date: bookingDate!, time: starTime!, length: stepperValue) {
-                let key = BookingDataHandler().formatStorageData(room:room.roomNumber, date: bookingDate)
-                print("Room \(room.roomNumber) not available, slots \(BookingDataHandler().getRoomBookingSlots(key: key))")
                 continue
             }
             
@@ -83,48 +80,44 @@ class RoomsViewController: UIViewController {
     }
     
     
+    // Update the start date based on the View input
     @IBAction func startTimeChanged(_ sender: UIDatePicker) {
         starTime = sender.date
-        print("Date Picker \(DateTimeHandler().formatTime(date: sender.date))")
         populateAvailableRooms()
     }
     
-    
+    // Set the reservation duration based on the stepper value
     @IBAction func stepperTapped(_ sender: UIStepper) {
         stepperValue = Int(sender.value)
         timeDurationTextField.text = DateTimeHandler().formatBookingTime(timeValue: stepperValue)
         populateAvailableRooms()
     }
     
+    // Prepare and send the information to the confirmation view controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToConfirm" {
             let confirmViewController = segue.destination as! ConfirmViewController
-            print ("Sending info with room selected as \(roomSelected) val \(buildingRooms[roomSelected].roomNumber)")
+
             confirmViewController.roomToBook = buildingRooms[roomSelected].roomNumber
             confirmViewController.userEmail = userEmail
             confirmViewController.bookingDuration = stepperValue
             confirmViewController.roomBuilding = building
             
             confirmViewController.bookingTime = starTime
-            confirmViewController.bookingDate = bookingDate //"\(date ?? ErrorHandler().showErrorMessage(errorID: 1)) - \(timeDurationTextField.text ?? ErrorHandler().showErrorMessage(errorID: 2))"
+            confirmViewController.bookingDate = bookingDate
         }
     }
 }
 
+// Extension for the table view
 extension RoomsViewController : UITableViewDelegate,UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if selectedIndex == indexPath {
-//            return 200
-//        }
-//        return 60
-//    }
     
-    
+    // Return the tableview rows based on the rooms available
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return roomsTableData.count
     }
     
-    
+    // Instantiate and return the TableView cell with the rooms information
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let roomCell = tableView.dequeueReusableCell(withIdentifier: "roomCell", for: indexPath)
         let room = roomsTableData[indexPath.row]
@@ -133,26 +126,10 @@ extension RoomsViewController : UITableViewDelegate,UITableViewDataSource {
         return roomCell
     }
     
+    // Stores the selected cell id to identify the room
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         roomSelected = roomsTableData[indexPath.row].index;
-        print("Room selected is \(roomSelected)")
         bookingButton.isEnabled = true
-
-        /*
-        if let viewController = storyboard?.instantiateViewController(identifier: "TrailViewController") as? TrailViewController {
-            viewController.trail = selectedTrail
-            navigationController?.pushViewController(viewController, animated: true)
-        }
-         */
     }
-    
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        selectedIndex = indexPath
-//
-//        tableView.beginUpdates()
-//        tableView.reloadRows(at: [selectedIndex!], with: .none)
-//        tableView.endUpdates()
-//    }
 }

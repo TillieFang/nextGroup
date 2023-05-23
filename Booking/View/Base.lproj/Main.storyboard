@@ -253,9 +253,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rfR-9H-A5u">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="FtW-pA-uh6">
+                        <barButtonItem key="rightBarButtonItem" style="done" id="FtW-pA-uh6">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="8Wh-eP-jIC">
-                                <rect key="frame" x="94" y="807" width="98" height="34"/>
+                                <rect key="frame" x="279" y="5" width="98" height="34.333333333333336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Log Out"/>
@@ -294,17 +294,17 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookingCell" id="niY-jq-2Id" customClass="BookingTableViewCell" customModule="Booking" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="353" height="121"/>
+                                        <rect key="frame" x="0.0" y="50" width="353" height="121.66666412353516"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="niY-jq-2Id" id="bbi-hh-fgB">
-                                            <rect key="frame" x="0.0" y="0.0" width="353" height="121"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="121.66666412353516"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ZjD-mQ-lgY">
-                                                    <rect key="frame" x="12" y="12" width="329" height="97"/>
+                                                    <rect key="frame" x="12" y="12" width="329" height="97.666666666666671"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5ld-6w-QLG">
-                                                            <rect key="frame" x="0.0" y="0.0" width="164.66666666666666" height="97"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="164.66666666666666" height="97.666666666666671"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9PA-RY-BEj">
                                                                     <rect key="frame" x="0.0" y="0.0" width="164.66666666666666" height="24.333333333333332"/>
@@ -313,19 +313,19 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Haa-Bk-gX7">
-                                                                    <rect key="frame" x="0.0" y="24.333333333333336" width="164.66666666666666" height="24.333333333333336"/>
+                                                                    <rect key="frame" x="0.0" y="24.333333333333336" width="164.66666666666666" height="24.666666666666664"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cv-th-6mt">
-                                                                    <rect key="frame" x="0.0" y="48.666666666666664" width="164.66666666666666" height="23.999999999999993"/>
+                                                                    <rect key="frame" x="0.0" y="49" width="164.66666666666666" height="24.333333333333329"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="booking name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Abx-Fa-GUK">
-                                                                    <rect key="frame" x="0.0" y="72.666666666666671" width="164.66666666666666" height="24.333333333333329"/>
+                                                                    <rect key="frame" x="0.0" y="73.333333333333329" width="164.66666666666666" height="24.333333333333329"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -333,10 +333,10 @@
                                                             </subviews>
                                                         </stackView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCJ-is-YJT">
-                                                            <rect key="frame" x="164.66666666666663" y="0.0" width="164.33333333333337" height="97"/>
+                                                            <rect key="frame" x="164.66666666666663" y="0.0" width="164.33333333333337" height="97.666666666666671"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r6j-Hg-T5w">
-                                                                    <rect key="frame" x="87.666666666666657" y="62" width="76.666666666666657" height="35"/>
+                                                                    <rect key="frame" x="87.666666666666657" y="62.666666666666671" width="76.666666666666657" height="35"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="35" id="4O5-u1-f7e"/>
                                                                     </constraints>
@@ -609,7 +609,7 @@
                                         <rect key="frame" x="112.66666666666664" y="0.0" width="240.33333333333337" height="50"/>
                                         <subviews>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="VhQ-lL-rFj">
-                                                <rect key="frame" x="8" y="0.0" width="104.66666666666667" height="52"/>
+                                                <rect key="frame" x="8" y="0.0" width="104.66666666666667" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="104.66666666666667" id="cap-3F-1Mb"/>
                                                 </constraints>

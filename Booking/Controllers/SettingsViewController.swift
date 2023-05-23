@@ -10,23 +10,24 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    // Settings View outlet connections
     @IBOutlet weak var buildingPopUpButton: UIButton!
-    
     @IBOutlet weak var datePickerTextField: UITextField!
-    
     @IBOutlet weak var continueButton: UIButton!
-    
     @IBOutlet weak var manageBookingsButton: UIButton!
 
+    // Variables from the login window and current view
     var userEmail: String? = nil
     var bookingDate: Date? = nil
     
+    // Configuration of the datepicker and building dropdown
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Disable the continue button initially
+        // Disable the continue button until a building is selected
         continueButton.isEnabled = false
         self.navigationItem.setHidesBackButton(true, animated: true)
+        
         
         setPopUpButton()
         
@@ -51,10 +52,9 @@ class SettingsViewController: UIViewController {
         datePickerTextField.inputAccessoryView = toolbar
         datePickerTextField.text = DateTimeHandler().formatDate(date: Date())
         
-        print ("Got email \(userEmail)")
     }
     
-    //to make pop up for buildings
+    // Set the popup dropdown buttons to select the building
     func setPopUpButton(){
         
         let optionClosure = {(action : UIAction) in
@@ -79,16 +79,17 @@ class SettingsViewController: UIViewController {
     
     }
     
+    // Update the booking date based on the datePicker
     @objc func dateChange (datePicker: UIDatePicker){
         bookingDate = datePicker.date
         datePickerTextField.text = DateTimeHandler().formatDate(date: bookingDate)
     }
-    
+        
     @objc func datePickerDone() {
         datePickerTextField.resignFirstResponder()
     }
 
-    // create override func to passing the value
+    // Send the values to the Rooms view controller or Bookings view controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier {
@@ -105,11 +106,9 @@ class SettingsViewController: UIViewController {
         default:
             break;
         }
-        //if segue.identifier == "goToRoom" {
-        //}
-        
     }
     
+    // Function to go back to the login view controller
     @IBAction func logOut(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(identifier: "LogInViewController") as! LogInViewController
         self.navigationController!.pushViewController(vc, animated: true)

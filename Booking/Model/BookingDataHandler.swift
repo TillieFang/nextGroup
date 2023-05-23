@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Struct to store a booking slot
 struct bookedHour: Codable, Equatable{
     var bookingDate: String
     var bookingHour: String
@@ -17,8 +18,10 @@ struct bookedHour: Codable, Equatable{
     var isStartingHour: Bool
 }
 
+// Struct to handle the saving and retrieving of bookings
 struct BookingDataHandler {
     
+    // Get the rooms associated with a building based on the building name
     func getBuildingRooms(building: String) -> [RoomDetails] {
         var rooms : [RoomDetails] = []
         
@@ -42,6 +45,7 @@ struct BookingDataHandler {
         return rooms;
     }
     
+    // Retrieves the booked time slots associated to a key (room and date)
     func getRoomBookingSlots(key: String)-> [bookedHour] {
         
         let defaults = UserDefaults.standard;
@@ -53,6 +57,7 @@ struct BookingDataHandler {
         return []
     }
     
+    // Get the bookings linked to a user using its email
     func getUserBookings(email: String) -> [String] {
         
         let defaults = UserDefaults.standard
@@ -64,18 +69,13 @@ struct BookingDataHandler {
         return []
     }
     
+    // Function to book the room storing the user, location and time information
     func bookRoom(room: String, date: Date, time: Date, length: Int, bookingName: String, userEmail: String) {
                         
-        print("Trying to book the room \(room), date \(date) at \(time) for \(length) mins")
-        
         let bookingKey = formatStorageData(room: room, date: date)
 
-        //print("Calling booking room with key \(bookingKey)")
-
         var roomBookingSlots: [bookedHour] = getRoomBookingSlots(key: bookingKey) // Reset
-        //print("Got room booking info \(roomBookingSlots)")
-        
-        // Split booking into 30 mins slots
+
         let roomBooking : [bookedHour] = convertBookingToBookedHour(bookedRoom: room, date: date, time: time, length: length, bookingName: bookingName, userEmail: userEmail) // Reset
         
         for booking in roomBooking {
@@ -83,32 +83,21 @@ struct BookingDataHandler {
         }
         
         var userBookingKeys: [String] = getUserBookings(email: userEmail) // Reset
-        //print("Got User Bookings \(userBookingKeys)")
 
         userBookingKeys.append(bookingKey) // Reset
 
         let defaults = UserDefaults.standard
 
-        // Store the booking information by room and date
         defaults.set(try? PropertyListEncoder().encode(roomBookingSlots), forKey: bookingKey)
-        
-        // Associate and store the booking date with the email to edit later
         defaults.set(try? PropertyListEncoder().encode(userBookingKeys), forKey: userEmail)
-                
-        print ("Defaults booked slots \(roomBookingSlots) and keys \(userBookingKeys)")
-        
     }
     
-    
+    // Function to remove a booking based on a booking key and a booking reference
     func removeBooking(bookingKey: String, bookingReference: bookedHour) {
-        
-        print ("Trying to remove the booking with Key \(bookingKey) and Ref \(bookingReference)")
         
         let defaults = UserDefaults.standard
         
         var bookingsWithKey = getRoomBookingSlots(key: bookingKey)
-
-        print ("Trying to remove booking key with values \(bookingsWithKey)")
 
         var userBookingKeys: [String] = getUserBookings(email: bookingReference.userEmail)
 
@@ -119,11 +108,8 @@ struct BookingDataHandler {
             }
         }
 
-        print ("Trying to remove booking key with values \(bookingsWithKey)")
-
-        //print ("bookings before deletion \(bookingsWithKey)")
-
-        for timeSlot in stride(from: 0, to: bookingReference.duration, by: 30) {
+        // Remove the booking and the upcoming bookings associated to it
+        for _ in stride(from: 0, to: bookingReference.duration, by: 30) {
         innerloop: for (index, booking) in bookingsWithKey.enumerated() {
                 if booking.bookingHour == bookingReference.bookingHour, booking.bookedRoom == bookingReference.bookedRoom, booking.userEmail == bookingReference.userEmail {
                     bookingsWithKey.remove(at: index)
@@ -131,16 +117,14 @@ struct BookingDataHandler {
                 }
             }
         }
-        
-        //print ("bookings after deletion \(bookingsWithKey)")
-        
+                
         // Store the booking information by room and date
         defaults.set(try? PropertyListEncoder().encode(bookingsWithKey), forKey: bookingKey)
-        
         // Associate and store the booking date with the email to edit later
         defaults.set(try? PropertyListEncoder().encode(userBookingKeys), forKey: bookingReference.userEmail)
     }
-    
+
+    // Function to check if the room is available in a specific date and duration
     func isRoomAvailable(room: String, date: Date, time: Date, length: Int)-> Bool {
         
         var isAvailable = true
@@ -163,10 +147,12 @@ struct BookingDataHandler {
         return isAvailable
     }
     
+    // Format the storage data to create a key
     func formatStorageData(room: String, date: Date?) -> String {
         return "\(room)-\(DateTimeHandler().formatDateAsKey(date: date))"
     }
     
+    // Function to convert a booking information into a bookedHour object
     func convertBookingToBookedHour (bookedRoom: String, date: Date, time: Date, length: Int, bookingName: String, userEmail: String) -> [bookedHour] {
         var bookings: [bookedHour] = []
                 
