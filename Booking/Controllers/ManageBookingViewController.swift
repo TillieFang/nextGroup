@@ -34,9 +34,11 @@ class ManageBookingViewController : UIViewController{
     
     
     @IBAction func returnToHome(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(identifier: "SettingsViewController") as! SettingsViewController
-        self.navigationController?.pushViewController(vc, animated: true)                
+        if let settingsVC = self.navigationController?.viewControllers[1] {
+            self.navigationController?.popToViewController(settingsVC, animated: true)
+        }
     }
+    
     
     func updateBookings(email: String) {
 

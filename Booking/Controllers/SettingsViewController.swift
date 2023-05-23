@@ -26,6 +26,7 @@ class SettingsViewController: UIViewController {
         
         // Disable the continue button initially
         continueButton.isEnabled = false
+        self.navigationItem.setHidesBackButton(true, animated: true)
         
         setPopUpButton()
         
@@ -66,7 +67,7 @@ class SettingsViewController: UIViewController {
         }
         
         buildingPopUpButton.menu = UIMenu(children : [
-            UIAction(title : "Buildings", state: .on, handler : optionClosure),
+            UIAction(title : "Buildings", attributes: .disabled, handler : optionClosure),
             UIAction(title : "Building 02", handler : optionClosure),
             UIAction(title : "Building 06", handler : optionClosure),
             UIAction(title : "Building 07", handler : optionClosure),
@@ -107,4 +108,10 @@ class SettingsViewController: UIViewController {
         //}
         
     }
+    
+    @IBAction func logOut(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(identifier: "LogInViewController") as! LogInViewController
+        self.navigationController!.pushViewController(vc, animated: true)
+    }
+    
 }

@@ -20,6 +20,7 @@ class RoomsViewController: UIViewController {
     @IBOutlet weak var timeDurationStepper: UIStepper!
     @IBOutlet weak var roomsTableView: UITableView!
     @IBOutlet weak var startingTimeDatePicker: UIDatePicker!
+    @IBOutlet weak var bookingButton: UIButton!
     
     var roomsTableData : [roomInfo] = []
         
@@ -37,6 +38,8 @@ class RoomsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        bookingButton.isEnabled = false
         
         buildingDateLabel.text = "\(building ?? ErrorHandler().showErrorMessage(errorID: 3))/\(DateTimeHandler().formatDate(date: bookingDate))"
         
@@ -131,6 +134,7 @@ extension RoomsViewController : UITableViewDelegate,UITableViewDataSource {
         
         roomSelected = roomsTableData[indexPath.row].index;
         print("Room selected is \(roomSelected)")
+        bookingButton.isEnabled = true
 
         /*
         if let viewController = storyboard?.instantiateViewController(identifier: "TrailViewController") as? TrailViewController {

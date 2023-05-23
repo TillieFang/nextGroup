@@ -17,6 +17,7 @@ class LogInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.setHidesBackButton(true, animated: true)
         
         loginButton.isEnabled = false
         [emailTextField, passwordTextField].forEach({ $0.addTarget(self, action: #selector(textFieldInput), for: .editingChanged) })
