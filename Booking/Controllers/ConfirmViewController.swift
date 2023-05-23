@@ -13,7 +13,6 @@ class ConfirmViewController: UIViewController {
     @IBOutlet weak var bookedRoomLabel: UILabel!
     @IBOutlet weak var buildingLabel: UILabel!
     @IBOutlet weak var bookDateTimeLabel: UILabel!
-    @IBOutlet weak var bookTimeDurationLabel: UILabel!
     
     var roomToBook: String? = nil
     var roomBuilding: String? = nil
@@ -30,7 +29,6 @@ class ConfirmViewController: UIViewController {
         bookedRoomLabel.text = roomToBook
         buildingLabel.text = roomBuilding
         bookDateTimeLabel.text = DateTimeHandler().formatDate(date: bookingDate)
-        bookTimeDurationLabel.text = "\(DateTimeHandler().formatTime(date: bookingTime)) - \(String(bookingDuration!)) min"
         
         print("Got user email as \(userEmail ?? "NULL!")")
     }
@@ -68,8 +66,10 @@ class ConfirmViewController: UIViewController {
 
         BookingDataHandler().bookRoom(room: roomVal, date: dateVal, time: timeVal, length: durationVal, bookingName: bookingName, userEmail: emailVal)
         
+        if let settingsVC = self.navigationController?.viewControllers[1] {
+                    self.navigationController?.popToViewController(settingsVC, animated: true)
+        }
     }
-    
     
     @IBAction func returnToSelectRoom(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

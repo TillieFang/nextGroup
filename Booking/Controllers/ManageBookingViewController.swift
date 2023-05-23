@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class ManageBookingViewController : UIViewController{
         
     @IBOutlet weak var bookingsTableView: UITableView!
@@ -15,8 +14,6 @@ class ManageBookingViewController : UIViewController{
     var bookingsTableDataKey: [String] = []
     var userBookings: [String] = []
     var userEmail : String? = nil
-    
-    @IBOutlet weak var myBookingsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +86,3 @@ extension ManageBookingViewController : UITableViewDelegate, UITableViewDataSour
         return bookingsTableData.count
     }
 }
-
-
-
-

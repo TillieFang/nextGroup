@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H9D-Pk-uyV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H9D-Pk-uyV">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -141,7 +140,7 @@
         <!--Settings View Controller-->
         <scene sceneID="2Hf-i1-HvR">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewController" id="dEP-MF-VM2" customClass="SettingsViewController" customModule="Booking" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dEP-MF-VM2" customClass="SettingsViewController" customModule="Booking" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sHY-sB-YcA">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -272,13 +271,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" My Bookings" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ji-Ao-vku">
-                                <rect key="frame" x="20" y="103" width="353" height="30"/>
+                                <rect key="frame" x="20" y="123" width="353" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rY2-Jc-iBF">
-                                <rect key="frame" x="20" y="153" width="353" height="585"/>
+                                <rect key="frame" x="20" y="173" width="353" height="625"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookingCell" id="niY-jq-2Id" customClass="BookingTableViewCell" customModule="Booking" customModuleProvider="target">
@@ -366,35 +365,17 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORz-C8-ufT">
-                                <rect key="frame" x="50" y="758" width="293" height="50"/>
-                                <color key="backgroundColor" name="AccentColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="KV5-dS-ohp"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Home">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="returnToHome:" destination="OXd-IX-bEO" eventType="touchUpInside" id="RzD-BP-dh4"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vBl-ZM-5kS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="7Ji-Ao-vku" firstAttribute="leading" secondItem="vBl-ZM-5kS" secondAttribute="leading" constant="20" id="30P-ND-nf5"/>
-                            <constraint firstItem="ORz-C8-ufT" firstAttribute="leading" secondItem="vBl-ZM-5kS" secondAttribute="leading" constant="50" id="7NR-aR-WGA"/>
+                            <constraint firstItem="vBl-ZM-5kS" firstAttribute="bottom" secondItem="rY2-Jc-iBF" secondAttribute="bottom" constant="20" id="9pJ-La-QyJ"/>
                             <constraint firstItem="vBl-ZM-5kS" firstAttribute="trailing" secondItem="7Ji-Ao-vku" secondAttribute="trailing" constant="20" id="FUk-KZ-5VQ"/>
-                            <constraint firstItem="vBl-ZM-5kS" firstAttribute="bottom" secondItem="ORz-C8-ufT" secondAttribute="bottom" constant="10" id="HQe-TU-Z9e"/>
                             <constraint firstItem="vBl-ZM-5kS" firstAttribute="trailing" secondItem="rY2-Jc-iBF" secondAttribute="trailing" constant="20" id="JBa-zJ-l4n"/>
-                            <constraint firstItem="vBl-ZM-5kS" firstAttribute="trailing" secondItem="ORz-C8-ufT" secondAttribute="trailing" constant="50" id="Je2-de-Jbp"/>
                             <constraint firstItem="rY2-Jc-iBF" firstAttribute="leading" secondItem="vBl-ZM-5kS" secondAttribute="leading" constant="20" id="O4v-ME-xhT"/>
-                            <constraint firstItem="7Ji-Ao-vku" firstAttribute="top" secondItem="vBl-ZM-5kS" secondAttribute="top" id="OIu-4j-bl6"/>
+                            <constraint firstItem="7Ji-Ao-vku" firstAttribute="top" secondItem="vBl-ZM-5kS" secondAttribute="top" constant="20" id="OIu-4j-bl6"/>
                             <constraint firstItem="rY2-Jc-iBF" firstAttribute="top" secondItem="7Ji-Ao-vku" secondAttribute="bottom" constant="20" id="hgp-NY-GH0"/>
-                            <constraint firstItem="ORz-C8-ufT" firstAttribute="top" secondItem="rY2-Jc-iBF" secondAttribute="bottom" constant="20" id="yEZ-Xx-UHn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="C9h-dO-WL0"/>
@@ -404,7 +385,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YPm-g5-R4Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1951.9083969465648" y="815.49295774647896"/>
+            <point key="canvasLocation" x="1953" y="816"/>
         </scene>
         <!--Confirm View Controller-->
         <scene sceneID="qqr-ZK-C7U">
@@ -458,7 +439,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="e4h-Va-61g">
-                                        <rect key="frame" x="0.0" y="363.66666666666669" width="293" height="74"/>
+                                        <rect key="frame" x="0.0" y="376" width="293" height="49"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArG-W1-tm8">
                                                 <rect key="frame" x="0.0" y="0.0" width="293" height="24"/>
@@ -466,14 +447,8 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eg: 5 May " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RaU-xQ-VyT">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eg: 5 May 12:00 - 13:00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RaU-xQ-VyT">
                                                 <rect key="frame" x="0.0" y="25" width="293" height="24"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="textColor" name="AccentColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eg: 12:00 - 13:00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oE-tU-zdZ">
-                                                <rect key="frame" x="0.0" y="49.999999999999943" width="293" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" name="AccentColor"/>
                                                 <nil key="highlightedColor"/>
@@ -513,7 +488,6 @@
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="returnToHomePage:" destination="Scl-g1-QwB" eventType="touchUpInside" id="Y5R-DW-jpd"/>
-                                                    <segue destination="OXd-IX-bEO" kind="show" id="gZx-ro-Lag"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V8X-od-Qy2">
@@ -550,7 +524,6 @@
                     <navigationItem key="navigationItem" id="qPE-SX-bmK"/>
                     <connections>
                         <outlet property="bookDateTimeLabel" destination="RaU-xQ-VyT" id="ncc-Oo-kbd"/>
-                        <outlet property="bookTimeDurationLabel" destination="7oE-tU-zdZ" id="kVu-PW-wGf"/>
                         <outlet property="bookedRoomLabel" destination="EQu-Hb-hfM" id="tYm-E4-2WB"/>
                         <outlet property="buildingLabel" destination="1hl-lq-L48" id="eoi-rC-FNU"/>
                     </connections>
@@ -595,13 +568,13 @@
                                 <rect key="frame" x="20" y="137" width="353" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starting Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UvC-Ym-Ue1">
-                                        <rect key="frame" x="0.0" y="0.0" width="112.66666666666667" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="73" height="50"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="On2-tl-Em5">
-                                        <rect key="frame" x="112.66666666666664" y="0.0" width="240.33333333333337" height="50"/>
+                                        <rect key="frame" x="73" y="0.0" width="280" height="50"/>
                                         <subviews>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="VhQ-lL-rFj">
                                                 <rect key="frame" x="8" y="0.0" width="104.66666666666667" height="50"/>
@@ -630,13 +603,13 @@
                                 <rect key="frame" x="20" y="187" width="353" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Duration:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAf-Da-GQc">
-                                        <rect key="frame" x="0.0" y="0.0" width="117" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="73" height="50"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oLY-w7-0rO">
-                                        <rect key="frame" x="120" y="0.0" width="233" height="50"/>
+                                        <rect key="frame" x="76" y="0.0" width="277" height="50"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="30 min" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="79q-96-fB3">
                                                 <rect key="frame" x="10" y="8" width="120" height="34"/>
@@ -764,9 +737,6 @@
             <point key="canvasLocation" x="2814.5038167938928" y="3.5211267605633805"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="gZx-ro-Lag"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
