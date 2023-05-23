@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct bookedHour: Codable{
+struct bookedHour: Codable, Equatable{
     var bookingDate: String
     var bookingHour: String
     var bookedRoom: String
@@ -72,20 +72,20 @@ struct BookingDataHandler {
 
         //print("Calling booking room with key \(bookingKey)")
 
-        var roomBookingSlots: [bookedHour] = getRoomBookingSlots(key: bookingKey)
+        var roomBookingSlots: [bookedHour] = getRoomBookingSlots(key: bookingKey) // Reset
         //print("Got room booking info \(roomBookingSlots)")
         
         // Split booking into 30 mins slots
-        let roomBooking : [bookedHour] = convertBookingToBookedHour(bookedRoom: room, date: date, time: time, length: length, bookingName: bookingName, userEmail: userEmail)
+        let roomBooking : [bookedHour] = convertBookingToBookedHour(bookedRoom: room, date: date, time: time, length: length, bookingName: bookingName, userEmail: userEmail) // Reset
         
         for booking in roomBooking {
             roomBookingSlots.append(booking)
         }
         
-        var userBookingKeys: [String] = getUserBookings(email: userEmail)
+        var userBookingKeys: [String] = getUserBookings(email: userEmail) // Reset
         //print("Got User Bookings \(userBookingKeys)")
 
-        userBookingKeys.append(bookingKey)
+        userBookingKeys.append(bookingKey) // Reset
 
         let defaults = UserDefaults.standard
 

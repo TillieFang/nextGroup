@@ -51,6 +51,7 @@ class SettingsViewController: UIViewController {
         datePickerTextField.inputAccessoryView = toolbar
         datePickerTextField.text = DateTimeHandler().formatDate(date: Date())
         
+        print ("Got email \(userEmail)")
     }
     
     //to make pop up for buildings

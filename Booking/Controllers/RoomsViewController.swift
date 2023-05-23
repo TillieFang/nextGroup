@@ -45,6 +45,7 @@ class RoomsViewController: UIViewController {
         
         
         buildingRooms = BookingDataHandler().getBuildingRooms(building: building!)
+        print("Got building rooms \(buildingRooms)")
 
         startingTimeDatePicker.locale = Locale(identifier: "en_AU")
         startingTimeDatePicker.timeZone = TimeZone(abbreviation: "Australia/Sydney")
@@ -55,6 +56,7 @@ class RoomsViewController: UIViewController {
         starTime = startingTimeDatePicker.date
 
         populateAvailableRooms()
+        print ("Got email \(userEmail)")
     }
     
     
@@ -62,14 +64,15 @@ class RoomsViewController: UIViewController {
         
         roomsTableData = []
         
-        let key = BookingDataHandler().formatStorageData(room: buildingRooms[roomSelected].roomNumber, date: bookingDate)
+        //let key = BookingDataHandler().formatStorageData(room: buildingRooms[roomSelected].roomNumber, date: bookingDate)
         //print("Got booked rooms \(BookingDataHandler().getRoomBookingSlots(key: key)) with Key \(key)")
 
         for (index, room) in buildingRooms.enumerated() {
             
             // Check if the room slots are available during the selected time or not, refresh each time the time is changed
-            if !BookingDataHandler().isRoomAvailable(room: room.roomNumber, date: bookingDate ?? Date.now, time: starTime ?? Date.now, length: stepperValue) {
-                //print("Room \(room.roomNumber) not available")
+            if !BookingDataHandler().isRoomAvailable(room: room.roomNumber, date: bookingDate!, time: starTime!, length: stepperValue) {
+                let key = BookingDataHandler().formatStorageData(room:room.roomNumber, date: bookingDate)
+                print("Room \(room.roomNumber) not available, slots \(BookingDataHandler().getRoomBookingSlots(key: key))")
                 continue
             }
             

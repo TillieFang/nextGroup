@@ -31,10 +31,11 @@ class ManageBookingViewController : UIViewController{
         bookingsTableView.delegate = self
         bookingsTableView.dataSource = self
     }
-    
-    
+        
     @IBAction func returnToHome(_ sender: Any) {
         if let settingsVC = self.navigationController?.viewControllers[1] {
+            let settingsVCD = settingsVC as! SettingsViewController
+            settingsVCD.userEmail = userEmail
             self.navigationController?.popToViewController(settingsVC, animated: true)
         }
     }
@@ -47,15 +48,29 @@ class ManageBookingViewController : UIViewController{
 
         userBookings = BookingDataHandler().getUserBookings(email: email)
         
-        print("User bookings keys \(userBookings)")
+        print("User bookings keys \(userBookings) with email \(email) userEmail \(userEmail)")
         
         for booking in userBookings {
             let bookedSlotsWithKey = BookingDataHandler().getRoomBookingSlots(key: booking)
             
             for bookedSlot in bookedSlotsWithKey {
+                let bookingExist = bookingsTableData.contains{ booking in
+                    if booking == bookedSlot {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                }
+                
+                if bookingExist {
+                    continue
+                }
+                    
                 if bookedSlot.userEmail == userEmail, bookedSlot.isStartingHour == true {
                     bookingsTableData.append(bookedSlot)
                     bookingsTableDataKey.append(booking)
+                    break
                 }
             }
         }
